@@ -64,6 +64,11 @@ function returnFnResult(fn) {
    console.log(f()); // выведет 13
  */
   function returnCounter(number) {
+        var value = number;
+        return function(){
+            value ++;
+            return value;
+        }
   }
 /*
  Задание 5 *:
