@@ -1,4 +1,4 @@
-/* ДЗ 1 - Функции */
+      /* ДЗ 1 - Функции */
 
 /*
  Задание 1:
@@ -63,12 +63,8 @@ function returnFnResult(fn) {
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-function returnCounter(number) {
-    return function func(){
-      return number++
-    };
-}
-
+  function returnCounter(number) {
+  }
 /*
  Задание 5 *:
 
@@ -80,11 +76,12 @@ function returnCounter(number) {
  */
 function returnArgumentsArray() {
     var newArr = [];
-    for(var i = 0; i < arguments.length; i++){
-        newArr = arguments[i];
+    for(var index in arguments){
+       newArr.push(arguments[index])
     }
     return newArr;
 }
+
 
 /*
  Задание 6 *:
@@ -102,6 +99,7 @@ function returnArgumentsArray() {
    console.log(newSum()) выведет 6
  */
 function bindFunction(fn) {
+  
 }
 
 export {
