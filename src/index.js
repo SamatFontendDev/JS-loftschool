@@ -24,7 +24,7 @@ function returnFirstArgument(a) {
  sumWithDefaults(10) вернет 110
 */
 function sumWithDefaults(a, b) {
-    if (b === undefined){
+    if (b === undefined) {
         b = 100;
     }
     
@@ -38,6 +38,7 @@ function sumWithDefaults(a, b) {
 */
 function returnFnResult(fn) {
     var r = fn();
+
     return r;
 }
 
@@ -52,14 +53,16 @@ function returnFnResult(fn) {
  console.log(f()); // выведет 13
 */
 function returnCounter(number) {
-      if (number === undefined){
+    if (number === undefined) {
         number = 0;
-      }
-      var value = number;
-      return function(){
-          value ++;
-          return value;
-      }
+    }
+    var value = number;
+    
+    return function() {
+        value ++;
+
+        return value;
+    }
 }
 /*
 Задание 5 *:
@@ -69,11 +72,13 @@ function returnCounter(number) {
  returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
 */
 function returnArgumentsArray() {
-  var newArr = [];
-  for(var index in arguments){
-     newArr.push(arguments[index])
-  }
-  return newArr;
+    var newArr = [];
+    
+    for (var index in arguments) {
+        newArr.push(arguments[index])
+    }
+    
+    return newArr;
 }
 
 
