@@ -81,7 +81,6 @@ function returnArgumentsArray() {
     return newArr;
 }
 
-
 /*
 Задание 6 *:
 Функция должна принимать другую функцию (F) и некоторое количество дополнительных аргументов
@@ -93,15 +92,25 @@ function returnArgumentsArray() {
  var newSum = bindFunction(sum, 2, 4);
  console.log(newSum()) выведет 6
 */
-function bindFunction(fn) {
+// function fnSum(a, b){
+//     return a + b;
+// }
+function bindFunction(fn, a, b) {
+    var arr = [];
+    
+    for (var index in arguments) {
+        arr.push(arguments[index])
+    }
+
+    var newArr = arr.slice(1);
 
 }
 
 export {
-  returnFirstArgument,
-  sumWithDefaults,
-  returnArgumentsArray,
-  returnFnResult,
-  returnCounter,
-  bindFunction
+    returnFirstArgument,
+    sumWithDefaults,
+    returnArgumentsArray,
+    returnFnResult,
+    returnCounter,
+    bindFunction
 }
