@@ -37,9 +37,9 @@ function sumWithDefaults(a, b) {
  returnFnResult(() => 'привет') вернет 'привет'
 */
 function returnFnResult(fn) {
-    var r = fn();
+    var result = fn();
 
-    return r;
+    return result;
 }
 
 /*
@@ -56,12 +56,11 @@ function returnCounter(number) {
     if (number === undefined) {
         number = 0;
     }
-    var value = number;
     
     return function() {
-        value ++;
+        number ++;
 
-        return value;
+        return number;
     }
 }
 /*
@@ -74,8 +73,8 @@ function returnCounter(number) {
 function returnArgumentsArray() {
     var newArr = [];
     
-    for (var index in arguments) {
-        newArr.push(arguments[index])
+    for (var i = 0; i < arguments.length; i++) {
+        newArr.push(arguments[i])
     }
     
     return newArr;
@@ -95,15 +94,7 @@ function returnArgumentsArray() {
 // function fnSum(a, b){
 //     return a + b;
 // }
-function bindFunction(fn, a, b) {
-    var arr = [];
-    
-    for (var index in arguments) {
-        arr.push(arguments[index])
-    }
-
-    var newArr = arr.slice(1);
-
+function bindFunction() {
 }
 
 export {
