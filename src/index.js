@@ -61,12 +61,16 @@ function upperProps(obj) {
  Напишите аналог встроенного метода slice для работы с массивами
  Посмотрите как работает slice и повторите это поведение для массива, который будет передан в параметре array
  */
-function slice(array, from, to) {
+function slice(array, from = 0, to = array.length) {
     var newArr = [];
-    var i = 0;
-    for (i = from; i < to; i++) {
-        newArr.push(array[i]);
+    
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] >= from && array[i] < to) {
+            newArr.push(array[i]);
+        }
     }
+
+    return newArr;
 }
 
 /*
