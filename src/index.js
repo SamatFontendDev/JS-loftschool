@@ -34,7 +34,7 @@ function map(array, fn) {
  Напишите аналог встроенного метода reduce для работы с массивами
  Посмотрите как работает reduce и повторите это поведение для массива, который будет передан в параметре array
  */
-function reduce(array, fn, initial) {
+function reduce(array, fn, initial = 0) {
 }
 
 /*
@@ -65,7 +65,7 @@ function slice(array, from = 0, to = array.length) {
     var newArr = [];
     
     for (var i = 0; i < array.length; i++) {
-        if (array[i] >= from && array[i] < to) {
+        if (i >= from && i < to) {
             newArr.push(array[i]);
         }
     }
