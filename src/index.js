@@ -37,18 +37,21 @@ function map(array, fn) {
 function reduce(array, fn, initial) {
     var previosValue;
     var i;
+
     if (initial === undefined) {
         previosValue = array[0];
-        i = 0;
+        i = 1;
     }
     else if (initial !== undefined) {
         previosValue = initial;
-        i = 1;
+        i = 0;
     }
+    
     for (; i < array.length; i++) {
-        
+        previosValue = fn(previosValue, array[i], i, array);
     }
 
+    return previosValue;
 }
 
 /*
