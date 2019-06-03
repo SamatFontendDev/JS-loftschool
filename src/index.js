@@ -41,8 +41,7 @@ function reduce(array, fn, initial) {
     if (initial === undefined) {
         previosValue = array[0];
         i = 1;
-    }
-    else if (initial !== undefined) {
+    } else if (initial !== undefined) {
         previosValue = initial;
         i = 0;
     }
@@ -66,7 +65,9 @@ function upperProps(obj) {
     var arr = [];
 
     for (var key in obj) {
-        arr.push(key.toUpperCase());
+        if (obj.hasOwnProperty(key)) {
+            arr.push(key.toUpperCase());
+        }
     }
 
     return arr;
