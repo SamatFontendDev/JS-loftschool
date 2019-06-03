@@ -95,7 +95,7 @@ function returnBadArguments(fn) {
     for (var i = 1; i < arguments.length; i++){
       try{
         fn(arguments[i]);
-      }catch {
+      } catch {
         arr.push(arguments[i])
       } 
     }
@@ -121,33 +121,42 @@ function returnBadArguments(fn) {
    - какой-либо из аргументов div является нулем (с текстом "division by 0")
  */
 function calculator(number = 0) {
-  if (!(isNaN(number))) {
+  if (!(isFinite(number))) {
     throw new Error('number is not a number');
   }
+  
   return {
     sum: function() {
       for (var i = 0; i < arguments.length; i++) {
           number += arguments[i];
       }
+
+      return number;
     },
     dif: function() {
       for (var i = 0; i < arguments.length; i++) {
         number -= arguments[i]; 
       }
+
+      return number;
     },
     div: function() {
       for (var i = 0; i < arguments.length; i++) {
         number /= arguments[i]; 
+
+        if (arguments[i] === 0) {
+          throw new Error('division by 0');
+        }
       }
+
+      return number;
     },
     mul: function() {
       for (var i = 0; i < arguments.length; i++) {
         number *= arguments[i];
-
-        if (arguments[i] === 0) {
-          throw new Error('division by 0');
-        } 
       }
+
+      return number;
     }
   }
 }
