@@ -12,8 +12,8 @@
  */
 function createDivWithText(text) {
   var div = document.createElement('div');
-  
-  return div.innerText(text);
+
+  return div.innerText = text;
 }
 /*
  Задание 2:
@@ -51,7 +51,7 @@ function findAllPSiblings(where) {
     var arr = [];
     
     for (var child of where.children) {
-        if (child.nextElementSibling.localName === 'p') {
+       if (child.nextElementSibling && child.nextElementSibling.localName === 'p') {
           arr.push(child);
         }
     }
@@ -79,7 +79,7 @@ function findAllPSiblings(where) {
 function findError(where) {
     var result = [];
 
-    for (var child of where.childrenNodes) {
+    for (var child of where.children) {
         result.push(child.innerText);
     }
 
@@ -100,7 +100,9 @@ function findError(where) {
  */
 function deleteTextNodes(where) {
     for (var child of where.childNodes) {
-      
+      if (child.nodeType === 3) {
+          where.removeChild(child);
+      }
     }
 }
 
@@ -116,6 +118,7 @@ function deleteTextNodes(where) {
    должно быть преобразовано в <span><div><b></b></div><p></p></span>
  */
 function deleteTextNodesRecursive(where) {
+  
 }
 
 /*
