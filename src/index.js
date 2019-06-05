@@ -93,11 +93,11 @@ function returnBadArguments(fn) {
   
     
     for (var i = 1; i < arguments.length; i++){
-      try{
-        fn(arguments[i]);
-      } catch {
-        arr.push(arguments[i])
-      } 
+      try {
+            fn(arguments[i]);
+          } catch {
+            arr.push(arguments[i]);  
+          }
     }
 
     return arr;
@@ -135,7 +135,7 @@ function calculator(number = 0) {
     },
     dif: function() {
       for (var i = 0; i < arguments.length; i++) {
-        number -= arguments[i]; 
+        number -= arguments[i];
       }
 
       return number;
