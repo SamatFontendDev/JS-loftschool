@@ -95,7 +95,7 @@ function returnBadArguments(fn) {
     for (var i = 1; i < arguments.length; i++){
       try {
             fn(arguments[i]);
-          } catch {
+          } catch (error) {
             arr.push(arguments[i]);  
           }
     }
