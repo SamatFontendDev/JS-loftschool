@@ -11,9 +11,11 @@
    createDivWithText('loftschool') // создаст элемент div, поместит в него 'loftschool' и вернет созданный элемент
  */
 function createDivWithText(text) {
-  var div = document.createElement('div');
+    var div = document.createElement('div');
+    
+    div.innerText = text;
 
-  return div.innerText = text;
+    return div;
 }
 /*
  Задание 2:
@@ -25,7 +27,7 @@ function createDivWithText(text) {
  */
 
 function prepend(what, where) {
-  where.insertBefore(what, where.firstChild);
+    where.insertBefore(what, where.firstChild);
 }
 
 /*
@@ -51,8 +53,8 @@ function findAllPSiblings(where) {
     var arr = [];
     
     for (var child of where.children) {
-       if (child.nextElementSibling && child.nextElementSibling.localName === 'p') {
-          arr.push(child);
+        if (child.nextElementSibling && child.nextElementSibling.localName === 'p') {
+            arr.push(child);
         }
     }
 
@@ -100,9 +102,9 @@ function findError(where) {
  */
 function deleteTextNodes(where) {
     for (var child of where.childNodes) {
-      if (child.nodeType === 3) {
-          where.removeChild(child);
-      }
+        if (child.nodeType === 3) {
+            where.removeChild(child);
+        }
     }
 }
 
@@ -118,14 +120,14 @@ function deleteTextNodes(where) {
    должно быть преобразовано в <span><div><b></b></div><p></p></span>
  */
 function deleteTextNodesRecursive(where) {
-    for (var child of where.childNodes) {
-      if (child.nodeType === 3) {
-        child.remove();
-      }
-      child.innerText = undefined;
-      if (child.childNodes) {
-        deleteTextNodesRecursive(child);
-      }
+    for (var i = 0; i < where.childNodes.length; i++){
+        if (where.childNodes[i] === 3) {
+            where.childNodes[i].remove();
+            i--;
+        }
+        if (where.childNodes[i].childNodes.length !== 0) {
+            deleteTextNodesRecursive(where.childNodes[i]);
+        }
     }
 }
 
