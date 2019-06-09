@@ -67,7 +67,7 @@ function delegate(target, fn) {
             fn();
         }
     });
-  }
+}
 
 /*
  Задание 6:
@@ -78,7 +78,9 @@ function delegate(target, fn) {
  Пример:
    once(document.querySelector('button'), () => console.log('обработчик выполнился!')) // добавит такой обработчик кликов для указанного элемента, который вызовется только один раз и затем удалится
  */
-function once(target, fn) {}
+function once(target, fn) {
+    target.addEventListener('click', fn, {once: true });
+}
 
 export {
     addListener,
