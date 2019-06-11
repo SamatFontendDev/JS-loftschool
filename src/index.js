@@ -9,6 +9,13 @@
    delayPromise(3) // вернет promise, который будет разрешен через 3 секунды
  */
 function delayPromise(seconds) {
+    var ms = seconds * 1000;
+
+    return new Promise ((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, ms);
+    });
 }
 
 /*
@@ -25,6 +32,26 @@ function delayPromise(seconds) {
    loadAndSortTowns().then(towns => console.log(towns)) // должна вывести в консоль отсортированный массив городов
  */
 function loadAndSortTowns() {
+  return new Promise ((resolve, rejected) => {
+      var xhr = new XMLHttpRequest();
+
+      xhr.open('GET', 'https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
+
+      xhr.send();
+
+      var towns = [];
+      var townsArr;
+
+      xhr.addEventListener('load', () => {
+          townsArr = JSON.parse(xhr.responseText);
+          for (var i = 0; i < townsArr.length; i++) {
+              towns.push(townsArr[i].name) 
+          }
+          towns.sort();
+
+          resolve(towns);
+      });
+  });
 }
 
 export {
