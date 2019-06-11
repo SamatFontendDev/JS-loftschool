@@ -39,14 +39,10 @@ function loadAndSortTowns() {
 
       xhr.send();
 
-      var towns = [];
-      var townsArr;
+      var towns;
 
       xhr.addEventListener('load', () => {
-          townsArr = JSON.parse(xhr.responseText);
-          for (var i = 0; i < townsArr.length; i++) {
-              towns.push(townsArr[i].name) 
-          }
+          towns = JSON.parse(xhr.responseText);
           towns.sort();
 
           resolve(towns);
