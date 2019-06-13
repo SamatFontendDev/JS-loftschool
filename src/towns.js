@@ -44,16 +44,23 @@ function loadTowns() {
 
       xhr.send();
 
-      var towns = [];
-      var townsArr;
-
+      var towns;
+      
       xhr.addEventListener('load', () => {
-          townsArr = JSON.parse(xhr.responseText);
-          for (var i = 0; i < townsArr.length; i++) {
-              towns.push(townsArr[i].name) 
-          }
-          
+        if (xhr.status >= 400) {
+            rejected();
+        } else {
+          towns = JSON.parse(xhr.responseText);
+          towns.sort((a, b) => {
+              if (a.name > b.name) {
+                  return 1;
+              } else if (a.name < b.name) {
+                  return -1;
+              }
+          });
+
           resolve(towns);
+        }
       });
   });
 }
@@ -93,7 +100,15 @@ const filterInput = homeworkContainer.querySelector('#filter-input');
 const filterResult = homeworkContainer.querySelector('#filter-result');
 
 filterInput.addEventListener('keyup', function() {
-    
+    loadTowns()
+      .then(
+        () => {
+        
+      },
+        () => {
+          
+        }
+      )
 });
 
 export {

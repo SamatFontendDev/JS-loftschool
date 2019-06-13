@@ -42,11 +42,21 @@ function loadAndSortTowns() {
       var towns;
 
       xhr.addEventListener('load', () => {
-          towns = JSON.parse(xhr.responseText);
-          towns.sort();
+          if (xhr.status >= 400) {
+              rejected();
+          } else {
+            towns = JSON.parse(xhr.responseText);
+            towns.sort((a, b) => {
+                if (a.name > b.name) {
+                    return 1;
+                } else if (a.name < b.name) {
+                    return -1;
+                }
+            });
 
-          resolve(towns);
-      });
+            resolve(towns);
+          }
+        });
   });
 }
 
