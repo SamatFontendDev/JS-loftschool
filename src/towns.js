@@ -51,7 +51,7 @@ function loadTowns() {
             rejected();
         } else {
           towns = JSON.parse(xhr.responseText);
-          towns.sort((a, b) => {
+          var sortTowns = towns.sort((a, b) => {
               if (a.name > b.name) {
                   return 1;
               } else if (a.name < b.name) {
@@ -59,7 +59,7 @@ function loadTowns() {
               }
           });
 
-          resolve(towns);
+          resolve(sortTowns);
         }
       });
   });
@@ -98,17 +98,17 @@ const filterBlock = homeworkContainer.querySelector('#filter-block');
 const filterInput = homeworkContainer.querySelector('#filter-input');
 /* Блок с результатами поиска */
 const filterResult = homeworkContainer.querySelector('#filter-result');
+var towns;
 
+loadTowns()
+.then(
+  (data) => {
+    towns = data;
+    loadingBlock.style.display = "none";
+    filterBlock.style.display = "block";
+});
 filterInput.addEventListener('keyup', function() {
-    loadTowns()
-      .then(
-        () => {
-        
-      },
-        () => {
-          
-        }
-      )
+    console.log(towns);
 });
 
 export {
