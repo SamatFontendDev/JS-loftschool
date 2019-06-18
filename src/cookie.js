@@ -51,10 +51,9 @@ filterNameInput.addEventListener('keyup', function() {
 
 addButton.addEventListener('click', () => {
   document.cookie = `${addNameInput.value}=${addValueInput.value}`;
-  
+
   var tr = document.createElement('tr');
   listTable.appendChild(tr);
   
-  addNameInput.value = '';
-  addValueInput.value = '';
+  
 });
