@@ -108,7 +108,20 @@ loadTowns()
     filterBlock.style.display = "block";
 });
 filterInput.addEventListener('keyup', function() {
-    console.log(towns);
+
+  var value = filterInput.value;
+
+    for (var i = 0; i < towns.length; i ++) {
+      
+      if (isMatching(towns[i].name, value)) {
+        
+        var div = document.createElement('div');
+
+        div.textContent = towns[i].name;
+
+        filterResult.appendChild(div);
+      }
+    }
 });
 
 export {
