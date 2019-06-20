@@ -38,31 +38,31 @@ const homeworkContainer = document.querySelector('#homework-container');
  */
 function loadTowns() {
     return new Promise ((resolve, rejected) => {
-      var xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
 
-      xhr.open('GET', 'https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
+        xhr.open('GET', 'https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
 
-      xhr.send();
+        xhr.send();
 
-      var towns;
+        var towns;
       
-      xhr.addEventListener('load', () => {
-        if (xhr.status >= 400) {
-            rejected();
-        } else {
-          towns = JSON.parse(xhr.responseText);
-          var sortTowns = towns.sort((a, b) => {
-              if (a.name > b.name) {
-                  return 1;
-              } else if (a.name < b.name) {
-                  return -1;
-              }
-          });
+        xhr.addEventListener('load', () => {
+            if (xhr.status >= 400) {
+                rejected();
+            } else {
+                towns = JSON.parse(xhr.responseText);
+                var sortTowns = towns.sort((a, b) => {
+                    if (a.name > b.name) {
+                        return 1;
+                    } else if (a.name < b.name) {
+                        return -1;
+                    }
+                });
 
-          resolve(sortTowns);
-        }
-      });
-  });
+                resolve(sortTowns);
+            }
+        });
+    });
 }
 
 /*
@@ -83,10 +83,10 @@ function isMatching(full, chunk) {
     
     if (fullUp.indexOf(chunkUp) >= 0) {
 
-      return true;
+        return true;
     } else {
 
-      return false;
+        return false;
     }
 }
 
@@ -101,26 +101,31 @@ const filterResult = homeworkContainer.querySelector('#filter-result');
 var towns;
 
 loadTowns()
-.then(
-  (data) => {
-    towns = data;
-    loadingBlock.style.display = "none";
-    filterBlock.style.display = "block";
-});
+    .then(
+        (data) => {
+            towns = data;
+            loadingBlock.style.display = 'none';
+            filterBlock.style.display = 'block';
+        });
+
 filterInput.addEventListener('keyup', function() {
-
-  var value = filterInput.value;
-
+  
+    filterResult.innerHTML = '';
+    var value = filterInput.value;
+ 
     for (var i = 0; i < towns.length; i ++) {
       
-      if (isMatching(towns[i].name, value)) {
+        if (isMatching(towns[i].name, value)) {
         
-        var div = document.createElement('div');
+            var div = document.createElement('div');
 
-        div.textContent = towns[i].name;
+            div.textContent = towns[i].name;
 
-        filterResult.appendChild(div);
-      }
+            filterResult.appendChild(div);
+        }
+    }
+    if (value.length === 0) {
+        filterResult.innerHTML = '';
     }
 });
 
