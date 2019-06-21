@@ -43,7 +43,25 @@ const addButton = homeworkContainer.querySelector('#add-button');
 // таблица со списком cookie
 const listTable = homeworkContainer.querySelector('#list-table tbody');
 
+function renderTable(cookies = {}) {
+  cookies = document.cookie.split('; ').reduce(function(prev, current) {
+    var [name, value] = current.split('=');
 
+    prev[name] = value;
+    
+    return prev;
+  }, {});
+
+  listTable.innerHTML = '';
+
+  for (var key in cookies) {
+    if (cookies.hasOwnProperty(key)) {
+      listTable.innerHTML += `<tr><td>${key}</td><td>${cookies[key]}</td><td><button class="delete">удалить</button></td></tr>`;
+    }
+  }
+};
+
+document.addEventListener("DOMContentLoaded", renderTable());
 
 filterNameInput.addEventListener('keyup', function() {
    
@@ -51,9 +69,23 @@ filterNameInput.addEventListener('keyup', function() {
 
 addButton.addEventListener('click', () => {
   document.cookie = `${addNameInput.value}=${addValueInput.value}`;
+  renderTable();
+});
 
-  var tr = document.createElement('tr');
-  listTable.appendChild(tr);
-  
-  
+const delete = homeworkContainer.querySelector('.delete');
+
+delete.addEventListener('click', function(){
+    var cookieName =  this.parentNode.previousElementSibling.previousElementSibling.textContent;
+    
+    var cookieVlaue =  this.parentNode.previousElementSibling.textContent;
+
+    var cookie = `${cookieName}=${cookieVlaue}`;
+
+    var cookiesArr = document.cookie.split('; ');
+
+    for (var i = 0; i < cookiesArr.length; i++) {
+      if (cookiesArr[i] === cookie) {
+
+      }
+    }
 });
